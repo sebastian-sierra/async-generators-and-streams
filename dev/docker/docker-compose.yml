@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: knex-stream-groupby-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: knexstreamgroupby
+    ports:
+      - "3306:3306"

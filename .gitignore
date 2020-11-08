@@ -1,0 +1,6 @@
+.idea/
+dist/
+.docker/
+node_modules/
+yarn-error.log
+big_*.sql

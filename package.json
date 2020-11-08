@@ -1,0 +1,81 @@
+{
+  "name": "async-generators-and-streams",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "Prototype of group by knex stream lines with async generators",
+  "main": "dist/index.js",
+  "author": "Sebastian SIERRA",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "yarn run clean && tsc",
+    "package": "cp package.json yarn.lock dist/ && cd dist/ && yarn install --production --prefer-offline",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf ./dist ",
+    "start": "cd dist && NODE_ENV=development node ./index.js",
+    "start:watch": "NODE_ENV=development nodemon --watch './src' -e ts --exec 'yarn run build && yarn run start'",
+    "test:it": "./test/integration/scripts/run-integration-tests.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn dependency-check --unused --no-dev --ignore-module \"*-ts\" -i \"mysql\" 'dist/**.js'"
+    }
+  },
+  "lint-staged": {
+    "*.(ts)": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "printWidth": 100
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "~/(.*)$": "<rootDir>/src/$1",
+      "test/(.*)$": "<rootDir>/test/$1"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "verbose": false
+  },
+  "importSort": {
+    ".ts": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  },
+  "dependencies": {
+    "dotenv": "8.2.0",
+    "fp-ts": "2.8.2",
+    "io-ts": "2.2.10",
+    "io-ts-reporters": "1.2.2",
+    "io-ts-types": "0.5.8",
+    "knex": "0.21.5",
+    "log4js": "6.3.0",
+    "monocle-ts": "2.3.3",
+    "mysql": "2.18.1",
+    "newtype-ts": "0.3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.13",
+    "@types/node": "14.6.4",
+    "dependency-check": "4.1.0",
+    "husky": "4.2.5",
+    "import-sort-style-module": "6.0.0",
+    "jest": "26.4.2",
+    "lint-staged": "10.1.2",
+    "nodemon": "2.0.4",
+    "prettier": "2.0.3",
+    "prettier-plugin-import-sort": "0.0.4",
+    "rimraf": "3.0.2",
+    "ts-jest": "26.3.0",
+    "ts-node": "9.0.0",
+    "typescript": "4.0.2"
+  }
+}

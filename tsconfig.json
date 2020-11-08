@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ES2019",
+    "module": "CommonJS",
+    "sourceMap": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
+  "exclude": ["test", "dist"]
+}
